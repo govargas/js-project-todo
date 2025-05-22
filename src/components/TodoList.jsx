@@ -3,7 +3,6 @@ import dayjs from 'dayjs'
 import { useTodos } from '../store/useTodos'
 
 export default function TodoList({ todos: propTodos }) {
-  // accept filtered list if passed, otherwise read full store
   // always fetch full list from the store
   const allTodos = useTodos((s) => s.todos)
   // use filtered list if provided, otherwise fallback to full store list
@@ -43,6 +42,18 @@ export default function TodoList({ todos: propTodos }) {
                 >
                   Due: {due.format('MMM D, YYYY')}
                 </span>
+              )}
+              {todo.tags && todo.tags.length > 0 && (
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {todo.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-2 py-0.5 text-xs bg-accent-yellow text-bauhaus-text rounded-full"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               )}
             </div>
 

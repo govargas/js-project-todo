@@ -11,6 +11,7 @@ export const useTodos = create(
           done: false,
           createdAt: new Date(),
           dueDate: null,
+          tags: [],
         },
         {
           id: '2',
@@ -18,10 +19,11 @@ export const useTodos = create(
           done: false,
           createdAt: new Date(),
           dueDate: null,
+          tags: [],
         },
       ],
 
-      addTodo: (text, dueDate) =>
+      addTodo: (text, dueDate = null, tags = []) =>
         set((state) => ({
           todos: [
             ...state.todos,
@@ -31,6 +33,7 @@ export const useTodos = create(
               done: false,
               createdAt: new Date(),
               dueDate: dueDate ? new Date(dueDate) : null,
+              tags,
             },
           ],
         })),
@@ -50,6 +53,26 @@ export const useTodos = create(
       completeAll: () =>
         set((state) => ({
           todos: state.todos.map((t) => ({ ...t, done: true })),
+        })),
+
+      // Add a tag to a todo (avoiding duplicates)
+      addTag: (id, tag) =>
+        set((state) => ({
+          todos: state.todos.map((t) =>
+            t.id === id
+              ? { ...t, tags: t.tags.includes(tag) ? t.tags : [...t.tags, tag] }
+              : t
+          ),
+        })),
+
+      // Remove a tag from a todo
+      removeTag: (id, tag) =>
+        set((state) => ({
+          todos: state.todos.map((t) =>
+            t.id === id
+              ? { ...t, tags: t.tags.filter((existing) => existing !== tag) }
+              : t
+          ),
         })),
     }),
     {

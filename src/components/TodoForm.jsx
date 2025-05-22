@@ -4,21 +4,32 @@ import { useTodos } from '../store/useTodos'
 export default function TodoForm() {
   const [text, setText] = useState('')
   const [dueDate, setDueDate] = useState('')
+  const [tags, setTags] = useState('')       // ← new state for comma-separated tags
   const addTodo = useTodos((s) => s.addTodo)
 
   const handleSubmit = (e) => {
     e.preventDefault()
     const trimmed = text.trim()
     if (!trimmed) return
-    addTodo(trimmed, dueDate)
+
+    // Build an array of non-empty, trimmed tags
+    const tagsArray = tags
+      .split(',')
+      .map((t) => t.trim())
+      .filter((t) => t !== '')
+
+    addTodo(trimmed, dueDate, tagsArray)
+
+    // Reset form fields
     setText('')
     setDueDate('')
+    setTags('')
   }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col sm:flex-row gap-2 mb-6"
+      className="flex flex-col sm:flex-row items-center gap-2 mb-6"
       aria-label="Add new task"
     >
       <input
@@ -35,6 +46,15 @@ export default function TodoForm() {
         onChange={(e) => setDueDate(e.target.value)}
         className="p-2 border border-bauhaus rounded focus:outline-none focus:ring-accent-blue"
         aria-label="Optional due date"
+      />
+
+      <input
+        type="text"
+        value={tags}
+        onChange={(e) => setTags(e.target.value)}
+        placeholder="Tags, comma-separated"
+        className="p-2 border border-bauhaus rounded focus:outline-none focus:ring-accent-blue"
+        aria-label="Optional tags"
       />
 
       <button
