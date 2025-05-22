@@ -2,11 +2,14 @@ import React from 'react'
 import dayjs from 'dayjs'
 import { useTodos } from '../store/useTodos'
 
-export default function TodoList() {
-  const todos      = useTodos((s) => s.todos)
+export default function TodoList({ todos: propTodos }) {
+  // accept filtered list if passed, otherwise read full store
+  // always fetch full list from the store
+  const allTodos = useTodos((s) => s.todos)
+  // use filtered list if provided, otherwise fallback to full store list
+  const todos = propTodos ?? allTodos
   const toggleTodo = useTodos((s) => s.toggleTodo)
   const removeTodo = useTodos((s) => s.removeTodo)
-
   const today = dayjs()
 
   return (

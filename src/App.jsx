@@ -1,4 +1,3 @@
-// src/App.jsx
 import React, { useEffect, useState } from 'react'
 import { useTodos } from './store/useTodos'
 import { useTheme } from './store/useTheme'
