@@ -1,43 +1,47 @@
-// src/store/useTodos.js
 import { create } from 'zustand'
+import { persist } from 'zustand/middleware'
 
-export const useTodos = create((set) => ({
-  todos: [
-    { id: '1', text: 'Learn Zustand', done: false, createdAt: new Date() },
-    { id: '2', text: 'Build a todo app', done: false, createdAt: new Date() },
-  ],
-
-  // Add a new todo
-  addTodo: (text) =>
-    set((state) => ({
+export const useTodos = create(
+  persist(
+    (set) => ({
       todos: [
-        ...state.todos,
-        {
-          id: Date.now().toString(),
-          text,
-          done: false,
-          createdAt: new Date(),
-        },
+        { id: '1', text: 'Learn Zustand', done: false, createdAt: new Date() },
+        { id: '2', text: 'Build a todo app', done: false, createdAt: new Date() },
       ],
-    })),
 
-  // Remove by id
-  removeTodo: (id) =>
-    set((state) => ({
-      todos: state.todos.filter((todo) => todo.id !== id),
-    })),
+      addTodo: (text) =>
+        set((state) => ({
+          todos: [
+            ...state.todos,
+            {
+              id: Date.now().toString(),
+              text,
+              done: false,
+              createdAt: new Date(),
+            },
+          ],
+        })),
 
-  // Toggle the 'done' flag
-  toggleTodo: (id) =>
-    set((state) => ({
-      todos: state.todos.map((todo) =>
-        todo.id === id ? { ...todo, done: !todo.done } : todo
-      ),
-    })),
+      removeTodo: (id) =>
+        set((state) => ({
+          todos: state.todos.filter((todo) => todo.id !== id),
+        })),
 
-  // Mark *all* tasks as completed
-  completeAll: () =>
-    set((state) => ({
-      todos: state.todos.map((todo) => ({ ...todo, done: true })),
-    })),
-}))
+      toggleTodo: (id) =>
+        set((state) => ({
+          todos: state.todos.map((todo) =>
+            todo.id === id ? { ...todo, done: !todo.done } : todo
+          ),
+        })),
+
+      completeAll: () =>
+        set((state) => ({
+          todos: state.todos.map((todo) => ({ ...todo, done: true })),
+        })),
+    }),
+    {
+      name: 'todos-storage',       // key in localStorage
+      getStorage: () => localStorage // (default)
+    }
+  )
+)
