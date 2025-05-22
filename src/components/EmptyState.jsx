@@ -2,11 +2,11 @@ import React from 'react'
 
 export default function EmptyState() {
   return (
-    <div className="flex flex-col items-center justify-center py-16 text-gray-500">
-      {/* Clipboard icon (Heroicons outline) */}
+    <div className="flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 text-muted">
+      {/* Clipboard icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-16 h-16 mb-4 text-gray-400"
+        className="w-16 h-16 mb-4 text-muted opacity-70"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
@@ -20,9 +20,12 @@ export default function EmptyState() {
         />
       </svg>
 
-      <h2 className="text-2xl font-semibold mb-2">No tasks yet!</h2>
-      <p className="mb-4">Looks like you don’t have any tasks. Let’s add one.</p>
-      {/* Emoji fallback or could be replaced with a button/icon */}
+      <h2 className="text-2xl font-semibold mb-2 text-bauhaus-text">
+        No tasks yet!
+      </h2>
+      <p className="mb-4 text-muted">
+        Looks like you don’t have any tasks. Let’s add one.
+      </p>
       <span className="text-5xl">📋</span>
     </div>
   )
