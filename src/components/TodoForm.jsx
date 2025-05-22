@@ -16,7 +16,7 @@ export default function TodoForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex gap-2 mb-4"
+      className="flex gap-2 mb-6"
       aria-label="Add new task"
     >
       <input
@@ -24,7 +24,7 @@ export default function TodoForm() {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="What needs doing?"
-        className="flex-1 p-2 border rounded focus:outline-none focus:ring"
+        className="flex-1 p-2 border border-bauhaus rounded focus:outline-none focus:ring-accent-blue"
       />
       <button
         type="submit"
