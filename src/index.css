@@ -1,13 +1,40 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
+/* Bauhaus Light Theme Variables */
+:root {
+  --bauhaus-bg:        #F5F0E6;
+  --bauhaus-text:      #1A1A1A;
+  --bauhaus-muted:     #4F4F4F;
+  --bauhaus-accent-red:    #D72638;
+  --bauhaus-accent-blue:   #3F88C5;
+  --bauhaus-accent-yellow: #F2C14E;
+  --bauhaus-border:         #CCC5B9;
+  --bauhaus-completed:      #9C9C9C;
+}
+
+/* Base overrides */
 @layer base {
   body {
-    @apply bg-gray-100;
+    background-color: var(--bauhaus-bg);
+    color: var(--bauhaus-text);
+    font-family: "neue-kabel", sans-serif;
   }
 }
 
+/* Custom utilities for my palette */
 @layer utilities {
-  .font-neue-kabel {
-    font-family: "neue-kabel", sans-serif;
-  }
+  .bg-bauhaus { background-color: var(--bauhaus-bg); }
+  .text-bauhaus { color: var(--bauhaus-text); }
+  .text-muted { color: var(--bauhaus-muted); }
+  .border-bauhaus { border-color: var(--bauhaus-border); }
+  .text-completed { color: var(--bauhaus-completed); }
+
+  .bg-accent-red { background-color: var(--bauhaus-accent-red); }
+  .text-accent-red { color: var(--bauhaus-accent-red); }
+  .bg-accent-blue { background-color: var(--bauhaus-accent-blue); }
+  .text-accent-blue { color: var(--bauhaus-accent-blue); }
+  .bg-accent-yellow { background-color: var(--bauhaus-accent-yellow); }
+  .text-accent-yellow { color: var(--bauhaus-accent-yellow); }
 }
