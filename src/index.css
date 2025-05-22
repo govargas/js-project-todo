@@ -14,6 +14,18 @@
   --bauhaus-completed:      #9C9C9C;
 }
 
+/* Bauhaus Dark Theme Variables */
+[data-theme="dark"] {
+  --bauhaus-bg:        #0A0A0A;
+  --bauhaus-text:      #F5F0E6;
+  --bauhaus-muted:     #A9A9A9;
+  --bauhaus-accent-red:    #F94144;
+  --bauhaus-accent-blue:   #277DA1;
+  --bauhaus-accent-yellow: #F9C74F;
+  --bauhaus-border:         #2E2E2E;
+  --bauhaus-completed:      #555555;
+}
+
 /* Base overrides */
 @layer base {
   body {
