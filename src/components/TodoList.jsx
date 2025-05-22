@@ -1,5 +1,5 @@
-// src/components/TodoList.jsx
 import React from 'react'
+import dayjs from 'dayjs'
 import { useTodos } from '../store/useTodos'
 
 export default function TodoList() {
@@ -14,14 +14,20 @@ export default function TodoList() {
           key={todo.id}
           className={`
             flex flex-col sm:flex-row sm:items-center justify-between
-            p-2 sm:p-3 md:p-4 /* responsive padding */
+            p-2 sm:p-3 md:p-4
             border border-bauhaus rounded
             transition-shadow hover:shadow-md
             ${todo.done ? 'opacity-50 line-through text-completed' : ''}
           `}
         >
-          <span>{todo.text}</span>
-          <div className="mt-2 sm:mt-0 space-x-2">
+          <div className="flex flex-col">
+            <span className="font-semibold">{todo.text}</span>
+            <span className="text-xs text-muted mt-1">
+              Created: {dayjs(todo.createdAt).format('MMM D, YYYY')}
+            </span>
+          </div>
+
+          <div className="mt-2 sm:mt-0 space-x-2 flex-shrink-0">
             <button
               onClick={() => toggleTodo(todo.id)}
               className="px-3 py-1 border border-accent-blue text-accent-blue rounded"
