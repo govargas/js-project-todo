@@ -5,3 +5,9 @@
     @apply bg-gray-100;
   }
 }
+
+@layer utilities {
+  .font-neue-kabel {
+    font-family: "neue-kabel", sans-serif;
+  }
+}
