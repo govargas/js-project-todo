@@ -29,7 +29,18 @@ export default function TodoForm() {
       <button
         type="submit"
         disabled={!text.trim()}
-        className="px-4 py-2 bg-accent-blue text-white rounded disabled:opacity-50"
+        className="
+          px-4 py-2
+          bg-accent-blue
+          text-white
+          font-semibold
+          rounded
+          focus:outline-none
+          focus:ring-2
+          focus:ring-accent-blue/50
+          hover:text-white focus:text-white
+          disabled:!bg-bauhaus-muted disabled:!text-muted disabled:cursor-not-allowed
+        "
       >
         Add
       </button>
