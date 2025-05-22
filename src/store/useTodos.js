@@ -1,3 +1,4 @@
+// src/store/useTodos.js
 import { create } from 'zustand'
 
 export const useTodos = create((set) => ({
@@ -32,5 +33,11 @@ export const useTodos = create((set) => ({
       todos: state.todos.map((todo) =>
         todo.id === id ? { ...todo, done: !todo.done } : todo
       ),
+    })),
+
+  // Mark *all* tasks as completed
+  completeAll: () =>
+    set((state) => ({
+      todos: state.todos.map((todo) => ({ ...todo, done: true })),
     })),
 }))
