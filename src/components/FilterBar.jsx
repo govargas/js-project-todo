@@ -5,15 +5,15 @@ export default function FilterBar({ onFilterChange }) {
   const [createdAfter, setCreatedAfter] = useState('')
 
   const handleStatusChange = (e) => {
-    const s = e.target.value
-    setStatus(s)
-    onFilterChange({ status: s, createdAfter })
+    const newStatus = e.target.value
+    setStatus(newStatus)
+    onFilterChange({ status: newStatus, createdAfter })
   }
 
   const handleDateChange = (e) => {
-    const d = e.target.value
-    setCreatedAfter(d)
-    onFilterChange({ status, createdAfter: d })
+    const newDate = e.target.value
+    setCreatedAfter(newDate)
+    onFilterChange({ status, createdAfter: newDate })
   }
 
   return (
