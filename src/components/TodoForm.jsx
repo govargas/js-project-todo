@@ -16,7 +16,11 @@ export default function TodoForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex gap-2 mb-6"
+      className="
+        flex flex-col     /* stack on mobile */
+        sm:flex-row gap-2 /* side-by-side on tablet+ */
+        mb-6
+      "
       aria-label="Add new task"
     >
       <input
