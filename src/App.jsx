@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import dayjs from 'dayjs'
 import { useTodos } from './store/useTodos'
 import { useTheme } from './store/useTheme'
 import Header from './components/Header'
@@ -9,39 +10,40 @@ import EmptyState from './components/EmptyState'
 import Footer from './components/Footer'
 
 export default function App() {
-  const todos = useTodos((s) => s.todos)
   const theme = useTheme((s) => s.theme)
+  const allTodos = useTodos((s) => s.todos)
 
-  // filter state
+  // filtering state
   const [filters, setFilters] = useState({
     status: 'all',
     createdAfter: '',
   })
 
-  // compute visible tasks
-  const visibleTodos = todos.filter((todo) => {
+  // whenever theme changes, apply it
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme)
+  }, [theme])
+
+  // compute visible todos based on filters
+  const visibleTodos = allTodos.filter((todo) => {
     // status filter
     if (filters.status === 'active' && todo.done) return false
     if (filters.status === 'completed' && !todo.done) return false
 
     // created-after filter
     if (filters.createdAfter) {
-      const created = new Date(todo.createdAt)
-      const after   = new Date(filters.createdAfter)
-      if (created < after) return false
+      const created = dayjs(todo.createdAt)
+      const after   = dayjs(filters.createdAfter)
+      if (created.isBefore(after, 'day')) return false
     }
 
     return true
   })
 
-  // apply theme attribute
-  useEffect(() => {
-    document.documentElement.setAttribute('data-theme', theme)
-  }, [theme])
-
   return (
     <div className="min-h-screen bg-bauhaus text-bauhaus-text font-neue-kabel">
       <Header />
+
       <main
         className="
           p-4        sm:p-6 
@@ -61,6 +63,7 @@ export default function App() {
           <EmptyState />
         )}
       </main>
+
       <Footer />
     </div>
   )
