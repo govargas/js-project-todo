@@ -26,7 +26,7 @@ export default function EmptyState() {
       <p className="mb-4 text-muted">
         Looks like you don’t have any tasks. Let’s add one.
       </p>
-      <span className="text-5xl">📋</span>
+      {/* <span className="text-5xl">📋</span> */}
     </div>
   )
 }

@@ -11,8 +11,8 @@ export default function ThemeToggle() {
       aria-label="Toggle dark/light theme"
       className="
         p-2 rounded 
-        bg-accent-yellow text-bauhaus-text 
-        focus:outline-none focus:ring-2 focus:ring-accent-yellow/50
+        text-bauhaus-text 
+        focus:outline-none
       "
     >
       {theme === 'light' ? '🌙' : '☀️'}

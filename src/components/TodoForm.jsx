@@ -29,7 +29,7 @@ export default function TodoForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col sm:flex-row items-center gap-2 mb-6"
+      className="flex flex-col sm:flex-row gap-2 mb-6"
       aria-label="Add new task"
     >
       <input
@@ -67,7 +67,7 @@ export default function TodoForm() {
           disabled:!bg-bauhaus-muted disabled:!text-muted disabled:cursor-not-allowed
         "
       >
-        Add
+        +
       </button>
     </form>
   )
