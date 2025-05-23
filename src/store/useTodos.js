@@ -23,7 +23,7 @@ export const useTodos = create(
         },
       ],
 
-      addTodo: (text, dueDate = null, tags = []) =>
+      addTodo: (text, dueDate = null, tags = []) => // Add a new todo
         set((state) => ({
           todos: [
             ...state.todos,
@@ -38,19 +38,19 @@ export const useTodos = create(
           ],
         })),
 
-      removeTodo: (id) =>
+      removeTodo: (id) => // Remove a todo by ID
         set((state) => ({
           todos: state.todos.filter((t) => t.id !== id),
         })),
 
-      toggleTodo: (id) =>
+      toggleTodo: (id) => // Toggle the done state of a todo
         set((state) => ({
           todos: state.todos.map((t) =>
             t.id === id ? { ...t, done: !t.done } : t
           ),
         })),
 
-      completeAll: () =>
+      completeAll: () => // Mark all todos as done
         set((state) => ({
           todos: state.todos.map((t) => ({ ...t, done: true })),
         })),
@@ -60,7 +60,7 @@ export const useTodos = create(
         set((state) => ({
           todos: state.todos.map((t) =>
             t.id === id
-              ? { ...t, tags: t.tags.includes(tag) ? t.tags : [...t.tags, tag] }
+              ? { ...t, tags: t.tags.includes(tag) ? t.tags : [...t.tags, tag] } 
               : t
           ),
         })),
@@ -77,7 +77,7 @@ export const useTodos = create(
     }),
     {
       name: 'todos-storage',
-      getStorage: () => localStorage,
+      getStorage: () => localStorage, // Use localStorage as the storage
     }
   )
 )

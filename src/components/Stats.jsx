@@ -1,11 +1,12 @@
 import React from 'react'
 import { useTodos } from '../store/useTodos'
 
-export default function Stats() {
-  const todos        = useTodos((s) => s.todos)
-  const completeAll  = useTodos((s) => s.completeAll)
-  const totalCount   = todos.length
-  const remainingCount = todos.filter((t) => !t.done).length
+export default function Stats() { // Stats component
+  // Zustand store for todos
+  const todos        = useTodos((s) => s.todos) // Get todos from Zustand store
+  const completeAll  = useTodos((s) => s.completeAll) // Get completeAll function from Zustand store
+  const totalCount   = todos.length // Total number of todos
+  const remainingCount = todos.filter((t) => !t.done).length // Number of remaining todos
 
   // If no tasks, render nothing
   if (totalCount === 0) return null

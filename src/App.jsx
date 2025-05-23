@@ -14,7 +14,7 @@ export default function App() {
   const allTodos = useTodos((s) => s.todos)
 
   // full filter state
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState({ // default values
     status:       'all',
     createdAfter: '',
     tagFilter:    '',

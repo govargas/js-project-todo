@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function EmptyState() {
+export default function EmptyState() { // EmptyState component
   return (
     <div className="flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 text-muted">
       <svg
