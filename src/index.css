@@ -1,52 +1,48 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 /* Bauhaus Light Theme Variables */
 :root {
-  --bauhaus-bg:        #F5F0E6;
-  --bauhaus-text:      #1A1A1A;
-  --bauhaus-muted:     #4F4F4F;
+  --bauhaus-bg:          #fbfbfb;
+  --bauhaus-text:        #1A1A1A;
+  --bauhaus-muted:       #4F4F4F;
   --bauhaus-accent-red:    #D72638;
   --bauhaus-accent-blue:   #3F88C5;
   --bauhaus-accent-yellow: #F2C14E;
-  --bauhaus-border:         #CCC5B9;
-  --bauhaus-completed:      #9C9C9C;
+  --bauhaus-border:        #CCC5B9;
+  --bauhaus-completed:     #9C9C9C;
+}
+
+@layer base {
+  body {
+    background-color: var(--bauhaus-bg);
+    color:            var(--bauhaus-text);
+    font-family:      "neue-kabel", sans-serif;
+  }
 }
 
 /* Bauhaus Dark Theme Variables */
 [data-theme="dark"] {
-  --bauhaus-bg:        #0A0A0A;
-  --bauhaus-text:      #F5F0E6;
-  --bauhaus-muted:     #A9A9A9;
+  --bauhaus-bg:          #0A0A0A;
+  --bauhaus-text:        #F5F0E6;
+  --bauhaus-muted:       #A9A9A9;
   --bauhaus-accent-red:    #F94144;
   --bauhaus-accent-blue:   #277DA1;
   --bauhaus-accent-yellow: #F9C74F;
-  --bauhaus-border:         #2E2E2E;
-  --bauhaus-completed:      #555555;
+  --bauhaus-border:        #2E2E2E;
+  --bauhaus-completed:     #555555;
 }
 
-/* Base overrides */
-@layer base {
-  body {
-    background-color: var(--bauhaus-bg);
-    color: var(--bauhaus-text);
-    font-family: "neue-kabel", sans-serif;
-  }
-}
-
-/* Custom utilities for my palette */
 @layer utilities {
-  .bg-bauhaus { background-color: var(--bauhaus-bg); }
-  .text-bauhaus { color: var(--bauhaus-text); }
-  .text-muted { color: var(--bauhaus-muted); }
-  .border-bauhaus { border-color: var(--bauhaus-border); }
-  .text-completed { color: var(--bauhaus-completed); }
+  .bg-bauhaus          { background-color: var(--bauhaus-bg); }
+  .text-bauhaus-text   { color: var(--bauhaus-text); }
+  .text-muted          { color: var(--bauhaus-muted); }
+  .border-bauhaus      { border-color: var(--bauhaus-border); }
+  .text-completed      { color: var(--bauhaus-completed); }
 
-  .bg-accent-red { background-color: var(--bauhaus-accent-red); }
-  .text-accent-red { color: var(--bauhaus-accent-red); }
-  .bg-accent-blue { background-color: var(--bauhaus-accent-blue); }
-  .text-accent-blue { color: var(--bauhaus-accent-blue); }
-  .bg-accent-yellow { background-color: var(--bauhaus-accent-yellow); }
-  .text-accent-yellow { color: var(--bauhaus-accent-yellow); }
+  .bg-accent-red       { background-color: var(--bauhaus-accent-red); }
+  .text-accent-red     { color: var(--bauhaus-accent-red); }
+  .bg-accent-blue      { background-color: var(--bauhaus-accent-blue); }
+  .text-accent-blue    { color: var(--bauhaus-accent-blue); }
+  .bg-accent-yellow    { background-color: var(--bauhaus-accent-yellow); }
+  .text-accent-yellow  { color: var(--bauhaus-accent-yellow); }
 }
