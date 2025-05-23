@@ -3,7 +3,6 @@ import React from 'react'
 export default function EmptyState() {
   return (
     <div className="flex flex-col items-center justify-center py-12 sm:py-16 md:py-20 text-muted">
-      {/* Clipboard icon */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="w-16 h-16 mb-4 text-muted opacity-70"

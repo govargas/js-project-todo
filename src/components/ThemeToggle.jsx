@@ -15,7 +15,11 @@ export default function ThemeToggle() {
         focus:outline-none
       "
     >
-      {theme === 'light' ? '🌙' : '☀️'}
+      {theme === 'light' ? (
+        <img src="/moon.svg" alt="Switch to dark theme" className="w-6 h-6" />
+      ) : (
+        <img src="/sun.svg" alt="Switch to light theme" className="w-6 h-6 filter invert" />
+      )}
     </button>
   )
 }
