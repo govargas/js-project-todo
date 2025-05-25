@@ -4,7 +4,8 @@ import { useTodos } from '../store/useTodos'
 export default function TodoForm() {
   const [text, setText] = useState('')
   const [dueDate, setDueDate] = useState('')
-  const [tags, setTags] = useState('')       // ← new state for comma-separated tags
+  const [tags, setTags] = useState('')
+  const [project, setProject] = useState('General') // Default project
   const addTodo = useTodos((s) => s.addTodo)
 
   const handleSubmit = (e) => {
@@ -18,18 +19,22 @@ export default function TodoForm() {
       .map((t) => t.trim())
       .filter((t) => t !== '')
 
-    addTodo(trimmed, dueDate, tagsArray)
+    // Use provided project or fallback to "General"
+    const projectName = project.trim() || 'General'
+
+    addTodo(trimmed, dueDate, tagsArray, projectName)
 
     // Reset form fields
     setText('')
     setDueDate('')
     setTags('')
+    setProject('General')
   }
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col sm:flex-row gap-2 mb-6"
+      className="flex flex-col sm:flex-row items-center gap-2 mb-6"
       aria-label="Add new task"
     >
       <input
@@ -57,6 +62,15 @@ export default function TodoForm() {
         aria-label="Optional tags"
       />
 
+      <input
+        type="text"
+        value={project}
+        onChange={(e) => setProject(e.target.value)}
+        placeholder="Project (default: General)"
+        className="p-2 border border-bauhaus rounded focus:outline-none focus:ring-accent-blue"
+        aria-label="Project"
+      />
+
       <button
         type="submit"
         disabled={!text.trim()}
@@ -67,7 +81,7 @@ export default function TodoForm() {
           disabled:!bg-bauhaus-muted disabled:!text-muted disabled:cursor-not-allowed
         "
       >
-        +
+        Add
       </button>
     </form>
   )
