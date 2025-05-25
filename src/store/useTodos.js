@@ -12,6 +12,7 @@ export const useTodos = create(
           createdAt: new Date(),
           dueDate: null,
           tags: [],
+          project: 'General',    // ← new project field
         },
         {
           id: '2',
@@ -20,10 +21,16 @@ export const useTodos = create(
           createdAt: new Date(),
           dueDate: null,
           tags: [],
+          project: 'General',
         },
       ],
 
-      addTodo: (text, dueDate = null, tags = []) => // Add a new todo
+      addTodo: (
+        text,
+        dueDate = null,
+        tags = [],
+        project = 'General'    // ← accept an optional project
+      ) =>
         set((state) => ({
           todos: [
             ...state.todos,
@@ -34,38 +41,37 @@ export const useTodos = create(
               createdAt: new Date(),
               dueDate: dueDate ? new Date(dueDate) : null,
               tags,
+              project,
             },
           ],
         })),
 
-      removeTodo: (id) => // Remove a todo by ID
+      removeTodo: (id) =>
         set((state) => ({
           todos: state.todos.filter((t) => t.id !== id),
         })),
 
-      toggleTodo: (id) => // Toggle the done state of a todo
+      toggleTodo: (id) =>
         set((state) => ({
           todos: state.todos.map((t) =>
             t.id === id ? { ...t, done: !t.done } : t
           ),
         })),
 
-      completeAll: () => // Mark all todos as done
+      completeAll: () =>
         set((state) => ({
           todos: state.todos.map((t) => ({ ...t, done: true })),
         })),
 
-      // Add a tag to a todo (avoiding duplicates)
       addTag: (id, tag) =>
         set((state) => ({
           todos: state.todos.map((t) =>
             t.id === id
-              ? { ...t, tags: t.tags.includes(tag) ? t.tags : [...t.tags, tag] } 
+              ? { ...t, tags: t.tags.includes(tag) ? t.tags : [...t.tags, tag] }
               : t
           ),
         })),
 
-      // Remove a tag from a todo
       removeTag: (id, tag) =>
         set((state) => ({
           todos: state.todos.map((t) =>
@@ -74,10 +80,18 @@ export const useTodos = create(
               : t
           ),
         })),
+
+      // ← new action to change a task’s project
+      changeProject: (id, project) =>
+        set((state) => ({
+          todos: state.todos.map((t) =>
+            t.id === id ? { ...t, project } : t
+          ),
+        })),
     }),
     {
       name: 'todos-storage',
-      getStorage: () => localStorage, // Use localStorage as the storage
+      getStorage: () => localStorage,
     }
   )
 )

@@ -10,7 +10,7 @@ export default function Header() {
         sm:px-6 sm:py-4  /* tablet */
         md:px-8 md:py-6  /* desktop */
       ">
-      <h1 className="text-9xl font-bold">klar</h1>
+      <h1 className="text-7xl font-bold">klar</h1>
       <ThemeToggle />
     </header>
   );
