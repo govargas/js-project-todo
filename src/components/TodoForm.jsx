@@ -5,7 +5,7 @@ export default function TodoForm() {
   const [text, setText] = useState('')
   const [dueDate, setDueDate] = useState('')
   const [tags, setTags] = useState('')
-  const [project, setProject] = useState('General') // Default project
+  const [project, setProject] = useState('') // Default project
   const addTodo = useTodos((s) => s.addTodo)
 
   const handleSubmit = (e) => {
@@ -34,7 +34,7 @@ export default function TodoForm() {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col sm:flex-row items-center gap-2 mb-6"
+      className="flex flex-col sm:flex-row gap-2 mb-6"
       aria-label="Add new task"
     >
       <input
