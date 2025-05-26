@@ -12,7 +12,7 @@ export const useTodos = create(
           createdAt: new Date(),
           dueDate: null,
           tags: [],
-          project: 'General',    // ← new project field
+          project: 'General',
         },
         {
           id: '2',
@@ -25,12 +25,7 @@ export const useTodos = create(
         },
       ],
 
-      addTodo: (
-        text,
-        dueDate = null,
-        tags = [],
-        project = 'General'    // ← accept an optional project
-      ) =>
+      addTodo: (text, dueDate = null, tags = [], project = 'General') =>
         set((state) => ({
           todos: [
             ...state.todos,
@@ -81,13 +76,29 @@ export const useTodos = create(
           ),
         })),
 
-      // ← new action to change a task’s project
       changeProject: (id, project) =>
         set((state) => ({
           todos: state.todos.map((t) =>
             t.id === id ? { ...t, project } : t
           ),
         })),
+
+      // New action for drag-and-drop reordering within a project
+      reorderInGroup: (project, fromIndex, toIndex) =>
+        set((state) => {
+          const groupTasks = state.todos.filter((t) => t.project === project)
+          if (fromIndex === toIndex) return { todos: state.todos }
+
+          const newGroup = Array.from(groupTasks)
+          const [moved] = newGroup.splice(fromIndex, 1)
+          newGroup.splice(toIndex, 0, moved)
+
+          const firstIndex = state.todos.findIndex((t) => t.project === project)
+          const newTodos = Array.from(state.todos)
+          newTodos.splice(firstIndex, groupTasks.length, ...newGroup)
+
+          return { todos: newTodos }
+        }),
     }),
     {
       name: 'todos-storage',
