@@ -62,6 +62,7 @@ export default function TodoList({ todos: propTodos }) {
                             <li
                               ref={prov.innerRef}
                               {...prov.draggableProps}
+                              role="listitem"            // override ARIA role
                               {...prov.dragHandleProps}
                               className={`
                                 flex flex-col sm:flex-row sm:items-center justify-between
@@ -121,7 +122,11 @@ export default function TodoList({ todos: propTodos }) {
                         </Draggable>
                       )
                     })}
-                    {provided.placeholder}
+
+                    {/* Wrap placeholder so <ul> has only <li> children */}
+                    <li aria-hidden="true" className="list-none">
+                      {provided.placeholder}
+                    </li>
                   </ul>
                 )}
               </Droppable>
